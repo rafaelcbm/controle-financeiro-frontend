@@ -21,8 +21,8 @@ export class LancamentosService {
     return this.http.post(this.apiUrl, lancamento);
   }
 
-  update(id: string, nome: string) {
-    return this.http.put(`${this.apiUrl}/${id}`, { nome });
+  update(id: string, lancamento: Lancamento) {
+    return this.http.put(`${this.apiUrl}/${id}`, lancamento);
   }
 
   delete(id: string) {

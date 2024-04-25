@@ -1,20 +1,10 @@
 <form class="register-form" (ngSubmit)="register()">
-    <mat-form-field class="input-field">
-        <input matInput placeholder="Login" [(ngModel)]="registerData.login" name="login" required>
-    </mat-form-field>
+  <mat-form-field class="input-field">
+    <input matInput placeholder="Login" [(ngModel)]="registerData.login" name="login" required>
+  </mat-form-field>
 
-    <mat-form-field class="input-field">
-        <input matInput type="password" placeholder="Password" [(ngModel)]="registerData.password" name="password"
-            required>
-    </mat-form-field>
-
-    <mat-form-field class="input-field">
-        <mat-label>Type</mat-label>
-        <mat-select [(ngModel)]="registerData.role" name="role" required>
-          <mat-option value="ADMIN">Admin</mat-option>
-          <mat-option value="USER">User</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-    <button mat-raised-button color="primary" type="submit">Register</button>
+  <mat-form-field class="input-field">
+    <input matInput type="password" placeholder="Password" [(ngModel)]="registerData.password" name="password" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Register</button>
 </form>

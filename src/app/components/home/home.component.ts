@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -15,10 +16,11 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 })
 export class HomeComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
-  navigateTo(route: string) {
-    this.router.navigate([route]);
+  logout() {
+    this.authService.removeToken();
+    this.router.navigate(['/login']);
   }
 
 }

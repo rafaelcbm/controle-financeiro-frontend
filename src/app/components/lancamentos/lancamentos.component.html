@@ -2,66 +2,71 @@
 
 
 <form class="form-container" (ngSubmit)="onSubmit(lancamentoForm)" #lancamentoForm="ngForm">
-    <mat-form-field>
-      <input matInput placeholder="Nome"  name="nome" [(ngModel)]="lancamento.nome" required>
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-select placeholder="Conta" [(ngModel)]="lancamento.idConta" name="idConta" required>
-        <mat-option [value]="undefined">Selecione</mat-option>
-        <mat-option *ngFor="let conta of contas | async" [value]="conta.id" >
-          {{ conta.nome }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-select placeholder="Categoria" [(ngModel)]="lancamento.idCategoria" name="idCategoria" required>
-            <mat-option [value]="undefined">Selecione</mat-option>
-            <mat-option *ngFor="let categoria of categorias | async" [value]="categoria.id" >
-            {{ categoria.nome }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Data" name="data" [(ngModel)]="lancamento.data" required>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    
-    <mat-form-field>
-      <input matInput type="number" placeholder="Valor"  name="valor" [(ngModel)]="lancamento.valor" required>
-    </mat-form-field>
-    
-    <mat-checkbox  name="pago" [(ngModel)]="lancamento.pago">Pago</mat-checkbox>
-  
-    <button mat-raised-button color="primary" type="submit">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>
+  <mat-form-field>
+    <input matInput placeholder="Nome" name="nome" [(ngModel)]="lancamento.nome" required>
+  </mat-form-field>
 
-    <button mat-raised-button color="secondary" type="button" (click)="cancelar(lancamentoForm)">Cancelar</button>
-  </form>
+  <mat-form-field>
+    <mat-select placeholder="Conta" [(ngModel)]="lancamento.idConta" name="idConta" required>
+      <mat-option [value]="undefined">Selecione</mat-option>
+      <mat-option *ngFor="let conta of contas$ | async" [value]="conta.id">
+        {{ conta.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <section class="lancamentos-list">
-   
-<mat-list class="lancamentos-list">
+  <mat-form-field>
+    <mat-select placeholder="Categoria" [(ngModel)]="lancamento.idCategoria" name="idCategoria" required>
+      <mat-option [value]="undefined">Selecione</mat-option>
+      <mat-option *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
+        {{ categoria.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Data" name="data" [(ngModel)]="lancamento.data" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Valor" name="valor" [(ngModel)]="lancamento.valor" required>
+  </mat-form-field>
+
+  <mat-checkbox name="pago" [(ngModel)]="lancamento.pago">Pago</mat-checkbox>
+
+  <button mat-raised-button color="primary" type="submit">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>
+
+  <button mat-raised-button color="secondary" type="button" (click)="cancelar(lancamentoForm)">Cancelar</button>
+</form>
+
+<section class="lancamentos-list">
+
+  <mat-list class="lancamentos-list">
     @for (l of lancamentos; track l) {
-    <mat-list-item >
+    <mat-list-item>
 
-        <mat-list-item>
-            <div matListItemLine>
-                <span class="item-value">{{l.nome}}</span>
-                <button color="primary" mat-icon-button (click)="editItem(l)">
-                    <mat-icon>edit</mat-icon>
-                </button>
+      <mat-list-item>
+        <div matListItemLine>
+          <span class="item-value">{{l.nome}}</span>
+          <span class="item-value">{{l.nomeConta}}</span>
+          <span class="item-value">{{l.nomeCategoria}}</span>
+          <span class="item-value">{{l.data}}</span>
+          <span class="item-value">{{l.valor}}</span>
+          <span class="item-value">{{l.pago|boolean}}</span>
+          <button color="primary" mat-icon-button (click)="editItem(l)">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-                <button color="warn" mat-icon-button (click)="deleteItem(l)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </mat-list-item>
+          <button color="warn" mat-icon-button (click)="deleteItem(l)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
 
     </mat-list-item>
     }
-</mat-list>
+  </mat-list>
 
-  </section>
+</section>

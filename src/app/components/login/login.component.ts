@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -43,5 +43,9 @@ export class LoginComponent {
         }
       }
     );
+  }
+
+  register() {
+    this.router.navigate(['/register']);
   }
 }

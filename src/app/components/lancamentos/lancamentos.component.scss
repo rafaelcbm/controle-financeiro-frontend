@@ -8,8 +8,9 @@
   }
 
   .lancamentos-list {
-    width: 500px; /* Define a largura dos campos */
+    width: 100%; /* Define a largura dos campos */
     margin: 10px auto;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,6 +21,5 @@
 
   .item-value{
     display: inline-block;
-    margin-right: 8em;
-    width: 50%;
+    margin: 1em 1em;    
   }

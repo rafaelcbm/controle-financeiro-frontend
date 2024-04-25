@@ -21,6 +21,10 @@ export class RegisterComponent {
   constructor(private registerService: RegisterService, private router: Router, private _snackBar: MatSnackBar) { }
 
   register() {
+    
+    //TODO: Implementar diferença entre perfis
+    this.registerData.role='ADMIN';
+
     this.registerService.register(this.registerData).subscribe(
       {
         next: (response: any) => {
