@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ContasComponent } from './components/contas/contas.component';
 import { canActivateGuard } from './routing/can-activate-guard.guard';
 import { CategoriasComponent } from './components/categorias/categorias.component';
+import { LancamentosComponent } from './components/lancamentos/lancamentos.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ export const routes: Routes = [
         children: [
             { path: 'contas', component: ContasComponent },
             { path: 'categorias', component: CategoriasComponent },
+            { path: 'lancamentos', component: LancamentosComponent },
         ],
         canActivate: [canActivateGuard],
     },

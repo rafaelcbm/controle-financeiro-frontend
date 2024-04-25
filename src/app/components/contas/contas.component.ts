@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
-
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,12 +31,7 @@ export class ContasComponent {
 
   private carregarContas() {
     this.contasService.getContas()
-      .subscribe(
-        {
-          next: data => {
-            this.items = data;
-          }
-        });
+      .subscribe({ next: data => this.items = data });
   }
 
   adicionarAtualizarItem() {
@@ -84,10 +77,7 @@ export class ContasComponent {
     console.log('Excluir item:', item);
 
     this.contasService.delete(item.id)
-      .subscribe(
-        {
-          next: data => this.carregarContas()
-        });
+      .subscribe({ next: data => this.carregarContas() });
   }
 
   cancelar() {

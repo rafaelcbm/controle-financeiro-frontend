@@ -8,7 +8,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { throwError } from 'rxjs';
 
 
 @Component({
