@@ -51,7 +51,7 @@ export class LancamentosComponent implements OnInit {
 
   lancamentos: any[] = [];
 
-  lancamento: any = {
+  lancamento:any = {
     id: '',
     nome: '',
     idConta: '',
