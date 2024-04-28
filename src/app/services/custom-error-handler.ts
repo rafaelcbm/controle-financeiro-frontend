@@ -17,18 +17,18 @@ export class CustomErrorHandler implements ErrorHandler {
         private authService: AuthService
     ) { }
 
-    handleError(error: Error | HttpErrorResponse): void {
+    handleError(errorResponse: Error | HttpErrorResponse): void {
 
         // Log the error to the console.
-        console.error(error);
+        console.error(errorResponse);
 
 
         let message = '';
 
-        if (error instanceof HttpErrorResponse) {
-            switch (error.status) {
+        if (errorResponse instanceof HttpErrorResponse) {
+            switch (errorResponse.status) {
                 case HttpStatusCode.BadRequest:
-                    message = error.error?.message ? error.error.message : error.error;
+                    message = errorResponse.error?.message ? errorResponse.error.message : errorResponse.error;
                     break;
                 case HttpStatusCode.Unauthorized:
                     message = 'Usuário não encontrado ou senha inválida.';
@@ -41,14 +41,22 @@ export class CustomErrorHandler implements ErrorHandler {
                     message = 'Usuário não tem permissão para realizar essa operação.';
                     break;
                 case HttpStatusCode.InternalServerError:
-                    message = 'Erro inesperado no servidor. Contate o administrador do sistema.';
+                    if (errorResponse.error.message == "Usuário não encontrado.") {
+                        message = 'Usuário não encontrado ou senha inválida.';
+                        this.authService.removeToken();
+                        this.zone.run(() => {
+                            this.router.navigate(['/login']);
+                        });
+                    } else {
+                        message = 'Erro inesperado no servidor. Contate o administrador do sistema.';
+                    }
                     break;
                 case HttpStatusCode.ServiceUnavailable:
                     message = 'Servidor indisponível! Tente novamente mais tarde. Se o problema persistir contate o administrador do sistema.';
                     break;
             }
         } else {
-            message = error.message;
+            message = errorResponse.message;
         }
 
         this.zone.run(() => {
@@ -59,6 +67,6 @@ export class CustomErrorHandler implements ErrorHandler {
             });
         });
 
-        
+
     }
 }
