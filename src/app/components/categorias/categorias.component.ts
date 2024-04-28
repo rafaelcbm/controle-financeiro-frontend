@@ -11,10 +11,13 @@ import { MatInputModule } from '@angular/material/input';
 import { CategoriasService } from '../../services/categorias.service';
 import { HeaderComponent } from '../header/header.component';
 
+
+import { MatCardModule } from '@angular/material/card';
+
 @Component({
   selector: 'app-categorias',
   standalone: true,
-  imports: [MatListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, FormsModule, HeaderComponent],
+  imports: [MatListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, FormsModule, HeaderComponent, MatCardModule],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.scss'
 })

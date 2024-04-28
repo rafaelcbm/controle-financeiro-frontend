@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -13,11 +14,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { Observable, forkJoin, of } from 'rxjs';
+import { Lancamento } from '../../model/lancamento.model';
+import { BooleanPipe } from '../../pipes/boolean.pipe';
 import { CategoriasService } from '../../services/categorias.service';
 import { ContasService } from '../../services/contas.service';
 import { LancamentosService } from '../../services/lancamentos.service';
-import { Lancamento } from '../../model/lancamento.model';
-import { BooleanPipe } from '../../pipes/boolean.pipe';
 
 
 
@@ -37,7 +38,8 @@ import { BooleanPipe } from '../../pipes/boolean.pipe';
     CommonModule,
     MatIconModule,
     MatListModule,
-    BooleanPipe
+    BooleanPipe,
+    MatCardModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './lancamentos.component.html',

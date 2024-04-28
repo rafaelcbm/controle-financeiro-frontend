@@ -1,25 +1,36 @@
 .form-container {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    margin-top: 20px; /* Adiciona margem no topo para separar da lista */
-  }
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  /* Centraliza horizontalmente */
+  justify-content: center;
+  /* Centraliza verticalmente */
+  margin-top: 20px;
+  /* Adiciona margem no topo para separar da lista */
+}
 
-  .lancamentos-list {
-    width: 100%; /* Define a largura dos campos */
-    margin: 10px auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+.item-list {
+  width: 100%;
+  display: grid;
+  row-gap: 1em;
+
+  .list-line {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 1fr 1fr 50px 50px;
+    grid-column-gap: 1em;
+    width: 90%;
+    justify-self: center;
     align-items: center;
-    // justify-content: center; /* Centraliza os elementos verticalmente */
-    height: 100vh; /* Define a altura do formulário para ocupar toda a altura da tela */
-    
-  }
 
-  .item-value{
-    display: inline-block;
-    margin: 1em 1em;    
   }
+}
+
+.item-value {
+  display: inline-block;
+  padding: 10px;
+
+  buttom {
+    text-align: center;
+  }
+}

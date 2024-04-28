@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 
 import { ContasService } from '../../services/contas.service';
 import { HeaderComponent } from '../header/header.component';
 
+import { MatCardModule } from '@angular/material/card';
+
 @Component({
   selector: 'app-contas',
   standalone: true,
-  imports: [MatListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, FormsModule, HeaderComponent],
+  imports: [MatListModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, FormsModule, HeaderComponent, MatCardModule],
   templateUrl: './contas.component.html',
   styleUrl: './contas.component.scss'
 })

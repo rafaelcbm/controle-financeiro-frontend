@@ -41,32 +41,31 @@
   <button mat-raised-button color="secondary" type="button" (click)="cancelar(lancamentoForm)">Cancelar</button>
 </form>
 
-<section class="lancamentos-list">
+<div>
 
-  <mat-list class="lancamentos-list">
+  <div class="item-list">
     @for (l of lancamentos; track l.id) {
-    <mat-list-item>
 
-      <mat-list-item>
-        <div matListItemLine>
-          <span class="item-value">{{l.nome}}</span>
-          <span class="item-value">{{l.nomeConta}}</span>
-          <span class="item-value">{{l.nomeCategoria}}</span>
-          <span class="item-value">{{l.data}}</span>
-          <span class="item-value">{{l.valor}}</span>
-          <span class="item-value">{{l.pago|boolean}}</span>
-          <button color="primary" mat-icon-button (click)="editItem(l)">
-            <mat-icon>edit</mat-icon>
-          </button>
+    <mat-card class="list-line">
+      <div class="item-value">{{l.nome}}</div>
+      <div class="item-value">{{l.nomeConta}}</div>
+      <div class="item-value">{{l.nomeCategoria}}</div>
+      <div class="item-value">{{l.data}}</div>
+      <div class="item-value">{{l.valor|currency: "BRL":"symbol-narrow":"1.2-2"}}</div>
+      <div class="item-value">{{l.pago|boolean}}</div>
+      <div class="item-value">
+        <button color="primary" mat-icon-button (click)="editItem(l)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div class="item-value">
+        <button color="warn" mat-icon-button (click)="deleteItem(l)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
 
-          <button color="warn" mat-icon-button (click)="deleteItem(l)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </mat-list-item>
 
-    </mat-list-item>
+    </mat-card>
     }
-  </mat-list>
-
-</section>
+  </div>
+</div>

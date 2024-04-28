@@ -2,30 +2,30 @@
 
 
 <div class="form-container">
-<mat-form-field>
-    <input matInput placeholder="Nome Conta" [(ngModel)]="novoItem.nome">
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="adicionarAtualizarItem()">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>
-  <button mat-raised-button color="secondary" (click)="cancelar()">Cancelar</button>
+    <mat-form-field>
+        <input matInput placeholder="Nome Conta" [(ngModel)]="novoItem.nome">
+    </mat-form-field>
+    <button mat-raised-button color="primary"
+        (click)="adicionarAtualizarItem()">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>
+    <button mat-raised-button color="secondary" (click)="cancelar()">Cancelar</button>
 </div>
-
-<mat-list class="contas-list">
+<div class="item-list">
     @for (item of items; track item.id) {
-    <mat-list-item class="contas-list-item">
+        <mat-card class="list-line">
+        <div class="item-value">{{item.nome}}</div>
 
-        <mat-list-item>
-            <div matListItemLine>
-                <span class="item-value">{{item.nome}}</span>
-                <button color="primary" mat-icon-button (click)="editItem(item)">
-                    <mat-icon>edit</mat-icon>
-                </button>
+        <div class="item-value">
+            <button color="primary" mat-icon-button (click)="editItem(item)">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
 
-                <button color="warn" mat-icon-button (click)="deleteItem(item)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </mat-list-item>
+        <div class="item-value">
+            <button color="warn" mat-icon-button (click)="deleteItem(item)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
 
-    </mat-list-item>
+    </mat-card>
     }
-</mat-list>
+</div>

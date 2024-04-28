@@ -7,19 +7,27 @@
   margin-top: 20px; /* Adiciona margem no topo para separar da lista */
 }
 
-.categorias-list {
-    width: 500px; /* Define a largura dos campos */
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    // justify-content: center; /* Centraliza os elementos verticalmente */
-    height: 100vh; /* Define a altura do formulário para ocupar toda a altura da tela */
-    
-  }
+.item-list {
+  width: 100%;
+  display: grid;
+  row-gap: 1em;
 
-  .item-value{
-    display: inline-block;
-    margin-right: 8em;
-    width: 50%;
+  .list-line {
+    display: grid;
+    grid-template-columns:  1fr 50px 50px;
+    grid-column-gap: 1em;
+    width: 30%;
+    justify-self: center;
+    align-items: center;
+
   }
+}
+
+.item-value {
+  display: inline-block;
+  padding: 10px;
+
+  buttom {
+    text-align: center;
+  }
+}
