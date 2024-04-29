@@ -3,11 +3,9 @@
   flex-direction: row;
   gap: 20px;
   align-items: center;
-  /* Centraliza horizontalmente */
   justify-content: center;
-  /* Centraliza verticalmente */
   margin-top: 20px;
-  /* Adiciona margem no topo para separar da lista */
+  padding: 0.5em;
 }
 
 .item-list {
