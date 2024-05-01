@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { RegisterService } from '../../services/register.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MessageService } from '../../services/message.service';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -18,29 +18,20 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   registerData = { login: '', password: '', role: '' };
 
-  constructor(private registerService: RegisterService, private router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private registerService: RegisterService, private router: Router, private messageService: MessageService) { }
 
   register() {
-    
+
     //TODO: Implementar diferença entre perfis
-    this.registerData.role='ADMIN';
+    this.registerData.role = 'ADMIN';
 
     this.registerService.register(this.registerData).subscribe(
       {
         next: (response: any) => {
           console.log('Registro bem-sucedido:', response);
 
-          this._snackBar.open('Registro bem sucedido!', 'Fechar', {
-            duration: 3000,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
-          });
-
+          this.messageService.showMessage('Registro bem sucedido!', 'Fechar');
           this.router.navigate(['/login']);
-        },
-        error: (error) => {
-          console.error('Erro ao registrar:', error);
-          // Adicione aqui a lógica para lidar com o erro
         }
       }
     );

@@ -10,6 +10,7 @@ import { ContasService } from '../../services/contas.service';
 import { HeaderComponent } from '../header/header.component';
 
 import { MatCardModule } from '@angular/material/card';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-contas',
@@ -25,7 +26,7 @@ export class ContasComponent {
   modo: 'EDICAO' | 'INCLUSAO' = 'INCLUSAO';
 
 
-  constructor(private contasService: ContasService) { }
+  constructor(private contasService: ContasService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.carregarContas();
@@ -50,6 +51,8 @@ export class ContasComponent {
             next: data => {
               this.carregarContas();
               this.novoItem.nome = '';
+
+              this.messageService.showMessage('Conta adicionada com sucesso.', 'Fechar');
             }
           });
     } else if (this.modo == 'EDICAO') {
@@ -60,8 +63,11 @@ export class ContasComponent {
               this.carregarContas();
               this.novoItem.nome = '';
               this.modo = 'INCLUSAO';
+
+              this.messageService.showMessage('Conta atualizada com sucesso.', 'Fechar');
             }
-          });
+          }
+        );
     }
   }
 

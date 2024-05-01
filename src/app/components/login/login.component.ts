@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginService } from '../../services/login.service';
+import { MessageService } from '../../services/message.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent {
 
   loginData = { login: '', password: '' };
 
-  constructor(private loginService: LoginService, private router: Router, private _snackBar: MatSnackBar, private authService: AuthService) { }
+  constructor(private loginService: LoginService, private router: Router, private messageService: MessageService, private authService: AuthService) { }
 
   login() {
     this.loginService.login(this.loginData).subscribe(
@@ -34,11 +34,7 @@ export class LoginComponent {
 
           let user = this.authService.getUser();
 
-          this._snackBar.open(`Bem Vindo, ${user}! `, 'Fechar', {
-            duration: 3000,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
-          });
+          this.messageService.showMessage(`Bem Vindo, ${user}! `, 'Fechar');
           this.router.navigate(['/home']);
         }
       }
