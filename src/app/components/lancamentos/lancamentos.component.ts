@@ -3,16 +3,17 @@ import { HeaderComponent } from '../header/header.component';
 
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import * as _moment from 'moment';
 import { Observable, forkJoin, of } from 'rxjs';
 import { Lancamento } from '../../model/lancamento.model';
 import { BooleanPipe } from '../../pipes/boolean.pipe';
@@ -20,8 +21,11 @@ import { CategoriasService } from '../../services/categorias.service';
 import { ContasService } from '../../services/contas.service';
 import { LancamentosService } from '../../services/lancamentos.service';
 import { MessageService } from '../../services/message.service';
+// tslint:disable-next-line:no-duplicate-imports
+import { default as _rollupMoment } from 'moment';
+import 'moment/locale/pt-br';
 
-
+const moment = _rollupMoment || _moment;
 
 @Component({
   selector: 'app-lancamentos',
@@ -34,15 +38,21 @@ import { MessageService } from '../../services/message.service';
     MatInputModule,
     DatePipe,
     MatDatepickerModule,
+    MatMomentDateModule,
     MatSelectModule,
     MatListModule,
     CommonModule,
     MatIconModule,
     MatListModule,
     BooleanPipe,
-    MatCardModule
+    MatCardModule,
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    // MatDatepickerModule
+    // provideNativeDateAdapter()
+    // { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
+    // provideMomentDateAdapter()
+  ],
   templateUrl: './lancamentos.component.html',
   styleUrl: './lancamentos.component.scss'
 })
