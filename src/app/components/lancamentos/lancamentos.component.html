@@ -3,7 +3,7 @@
 
 <form class="form-container" (ngSubmit)="onSubmit(lancamentoForm)" #lancamentoForm="ngForm">
   <mat-form-field>
-    <input matInput placeholder="Nome" name="nome" [(ngModel)]="lancamento.nome" required>
+    <input autofocus matInput placeholder="Nome" name="nome" [(ngModel)]="lancamento.nome" required>
   </mat-form-field>
 
   <mat-form-field>

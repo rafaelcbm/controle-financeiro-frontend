@@ -3,7 +3,7 @@
 
 <div class="form-container">
     <mat-form-field>
-        <input matInput placeholder="Nome Conta" id="nome-conta" [(ngModel)]="novoItem.nome">
+        <input autofocus matInput placeholder="Nome Conta" id="nome-conta" [(ngModel)]="novoItem.nome">
     </mat-form-field>
     <button mat-raised-button color="primary"
         (click)="adicionarAtualizarItem()">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>

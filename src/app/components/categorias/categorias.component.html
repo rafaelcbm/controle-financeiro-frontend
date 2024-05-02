@@ -3,7 +3,7 @@
 
 <div class="form-categoriainer">
 <mat-form-field>
-    <input matInput placeholder="Nome Categoria" [(ngModel)]="novoItem.nome">
+    <input autofocus matInput placeholder="Nome Categoria" [(ngModel)]="novoItem.nome">
   </mat-form-field>
   <button mat-raised-button color="primary" (click)="adicionarAtualizarItem()">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>
   <button mat-raised-button color="secondary" (click)="cancelar()">Cancelar</button>
