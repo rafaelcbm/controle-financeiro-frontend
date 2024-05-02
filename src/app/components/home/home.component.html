@@ -1,17 +1,17 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
+    <button id="main-menu" mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
         <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="contas">
+        <button id="menu-contas" mat-menu-item routerLink="contas">
             <mat-icon>wallet</mat-icon>
             <span>Contas</span>
         </button>
-        <button mat-menu-item routerLink="categorias">
+        <button id="menu-categorias" mat-menu-item routerLink="categorias">
             <mat-icon>category</mat-icon>
             <span>Categorias</span>
         </button>
-        <button mat-menu-item routerLink="lancamentos">
+        <button id="menu-lancamentos" mat-menu-item routerLink="lancamentos">
             <mat-icon>money</mat-icon>
             <span>Lancamentos</span>
         </button>

@@ -13,6 +13,7 @@ import { HeaderComponent } from '../header/header.component';
 
 
 import { MatCardModule } from '@angular/material/card';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-categorias',
@@ -28,7 +29,7 @@ export class CategoriasComponent {
   modo: 'EDICAO' | 'INCLUSAO' = 'INCLUSAO';
 
 
-  constructor(private categoriasService: CategoriasService) { }
+  constructor(private categoriasService: CategoriasService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.carregarCategorias();
@@ -58,6 +59,7 @@ export class CategoriasComponent {
             next: data => {
               this.carregarCategorias();
               this.novoItem.nome = '';
+              this.messageService.showMessage('Categoria adicionada com sucesso.', 'Fechar');
             }
           });
     } else if (this.modo == 'EDICAO') {
@@ -68,6 +70,7 @@ export class CategoriasComponent {
               this.carregarCategorias();
               this.novoItem.nome = '';
               this.modo = 'INCLUSAO';
+              this.messageService.showMessage('Categoria atualizada com sucesso.', 'Fechar');
             }
           });
     }
@@ -89,7 +92,10 @@ export class CategoriasComponent {
     this.categoriasService.delete(item.id)
       .subscribe(
         {
-          next: data => this.carregarCategorias()
+          next: data => {
+            this.carregarCategorias();
+            this.messageService.showMessage('Categoria excluída com sucesso.', 'Fechar');
+          }
         });
   }
 

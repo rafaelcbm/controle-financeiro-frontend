@@ -1,11 +1,11 @@
 <app-header [title]="'Categorias'"></app-header>
 
 
-<div class="form-categoriainer">
+<div class="form-container">
 <mat-form-field>
-    <input autofocus matInput placeholder="Nome Categoria" [(ngModel)]="novoItem.nome">
+    <input id="nome-categoria" autofocus matInput placeholder="Nome Categoria" [(ngModel)]="novoItem.nome">
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="adicionarAtualizarItem()">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>
+  <button id="btn-add-categoria" mat-raised-button color="primary" (click)="adicionarAtualizarItem()">{{modo==='INCLUSAO'?'Adicionar':'Atualizar'}}</button>
   <button mat-raised-button color="secondary" (click)="cancelar()">Cancelar</button>
 </div>
 
@@ -15,13 +15,13 @@
         <div class="item-value">{{item.nome}}</div>
 
         <div class="item-value">
-            <button color="primary" mat-icon-button (click)="editItem(item)">
+            <button id="btn-edit-categoria" color="primary" mat-icon-button (click)="editItem(item)">
                 <mat-icon>edit</mat-icon>
             </button>
         </div>
 
         <div class="item-value">
-            <button color="warn" mat-icon-button (click)="deleteItem(item)">
+            <button id="btn-delete-categoria" color="warn" mat-icon-button (click)="deleteItem(item)">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>

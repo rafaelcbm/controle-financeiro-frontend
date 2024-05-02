@@ -51,7 +51,6 @@ export class ContasComponent {
             next: data => {
               this.carregarContas();
               this.novoItem.nome = '';
-
               this.messageService.showMessage('Conta adicionada com sucesso.', 'Fechar');
             }
           });
@@ -63,7 +62,6 @@ export class ContasComponent {
               this.carregarContas();
               this.novoItem.nome = '';
               this.modo = 'INCLUSAO';
-
               this.messageService.showMessage('Conta atualizada com sucesso.', 'Fechar');
             }
           }
@@ -85,7 +83,10 @@ export class ContasComponent {
     console.log('Excluir item:', item);
 
     this.contasService.delete(item.id)
-      .subscribe({ next: data => this.carregarContas() });
+      .subscribe({ next: data => {
+        this.carregarContas()
+        this.messageService.showMessage('Conta excluída com sucesso.', 'Fechar');
+      } });
   }
 
   cancelar() {

@@ -19,6 +19,7 @@ import { BooleanPipe } from '../../pipes/boolean.pipe';
 import { CategoriasService } from '../../services/categorias.service';
 import { ContasService } from '../../services/contas.service';
 import { LancamentosService } from '../../services/lancamentos.service';
+import { MessageService } from '../../services/message.service';
 
 
 
@@ -53,7 +54,7 @@ export class LancamentosComponent implements OnInit {
 
   lancamentos: any[] = [];
 
-  lancamento:any = {
+  lancamento: any = {
     id: '',
     nome: '',
     idConta: '',
@@ -70,7 +71,8 @@ export class LancamentosComponent implements OnInit {
   constructor(
     public contasService: ContasService,
     public categoriasService: CategoriasService,
-    public lancamentosService: LancamentosService) { }
+    public lancamentosService: LancamentosService,
+    private messageService: MessageService) { }
 
 
   ngOnInit() {
@@ -126,6 +128,7 @@ export class LancamentosComponent implements OnInit {
             next: data => {
               this.carregarLancamentos();
               this.resetForm(form);
+              this.messageService.showMessage('Lançamento adicionado com sucesso.', 'Fechar');
             }
           });
     } else if (this.modo == 'EDICAO') {
@@ -136,6 +139,7 @@ export class LancamentosComponent implements OnInit {
               this.carregarLancamentos();
               this.resetForm(form);
               this.modo = 'INCLUSAO';
+              this.messageService.showMessage('Lançamento atualizado com sucesso.', 'Fechar');
             }
           });
     }
@@ -165,7 +169,12 @@ export class LancamentosComponent implements OnInit {
 
   deleteItem(lancamento: Lancamento) {
     this.lancamentosService.delete(lancamento.id!)
-      .subscribe({ next: data => this.carregarLancamentos() });
+      .subscribe({
+        next: data => {
+          this.carregarLancamentos();
+          this.messageService.showMessage('Lançamento excluído com sucesso.', 'Fechar');
+        }
+      });
   }
 
   cancelar(form: NgForm) {
