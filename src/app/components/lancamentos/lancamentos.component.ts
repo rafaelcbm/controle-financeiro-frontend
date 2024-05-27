@@ -105,14 +105,11 @@ export class LancamentosComponent implements OnInit {
 
               this.lancamentos.map(l => {
 
-                //Atualiza a descrição do nome da conta
-
                 const contaEncontrada = contasList.find(c => c.id == l.idConta);
                 if (contaEncontrada) {
                   l.nomeConta = contaEncontrada.nome;
                 }
 
-                //Atualiza a descrição do nome da conta
                 const categoriaEncontrada = categoriasList.find(c => c.id == l.idCategoria);
                 if (categoriaEncontrada) {
                   l.nomeCategoria = categoriaEncontrada.nome;
@@ -126,9 +123,9 @@ export class LancamentosComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // console.log('Entidade salva:', this.entidade);
 
-    form.value.data = this.formatarDataParaString(form.value.data);
+    form.value.data =form.value.data.format('DD-MM-YYYY');   
+    
     console.log('formValue:', form.value);
 
     if (this.modo == 'INCLUSAO') {
@@ -172,7 +169,7 @@ export class LancamentosComponent implements OnInit {
     this.lancamento.nome = lancamentoToEdit.nome;
     this.lancamento.idConta = lancamentoToEdit.idConta;
     this.lancamento.idCategoria = lancamentoToEdit.idCategoria;
-    this.lancamento.data = this.parseStringParaData(lancamentoToEdit.data);
+    this.lancamento.data = moment(lancamentoToEdit.data, "DD-MM-YYYY");   
     this.lancamento.valor = lancamentoToEdit.valor;
     this.lancamento.pago = lancamentoToEdit.pago;
   }
@@ -190,36 +187,6 @@ export class LancamentosComponent implements OnInit {
   cancelar(form: NgForm) {
     this.modo = 'INCLUSAO';
     this.resetForm(form);
-  }
-
-  formatarDataParaString(data: Date) {
-    const dia = String(data.getDate()).padStart(2, '0');
-    const mes = String(data.getMonth() + 1).padStart(2, '0'); // Os meses são indexados a partir de 0
-    const ano = data.getFullYear();
-
-    return `${dia}-${mes}-${ano}`;
-  }
-
-  parseStringParaData(dataString: string): Date | null {
-    // Verifica se a string possui o formato esperado
-    const regex = /^(\d{2})-(\d{2})-(\d{4})$/;
-    const match = dataString.match(regex);
-
-    if (match) {
-      // Extrai os componentes da data da string correspondente
-      const dia = parseInt(match[1], 10);
-      const mes = parseInt(match[2], 10) - 1; // Os meses são indexados a partir de 0
-      const ano = parseInt(match[3], 10);
-
-      // Cria um objeto Date com os componentes extraídos
-      const data = new Date(ano, mes, dia);
-
-      // Verifica se a data é válida
-      if (data.getDate() === dia && data.getMonth() === mes && data.getFullYear() === ano) {
-        return data;
-      }
-    }
-    return null;
   }
 
 }
