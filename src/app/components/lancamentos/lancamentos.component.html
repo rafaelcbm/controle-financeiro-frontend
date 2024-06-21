@@ -10,7 +10,7 @@
   <mat-form-field>
     <mat-select id="select-contas" placeholder="Conta" [(ngModel)]="lancamento.idConta" name="idConta" required>
       <mat-option [value]="undefined">Selecione</mat-option>
-      <mat-option *ngFor="let conta of contas$ | async" [value]="conta.id">
+      <mat-option class="option-conta" *ngFor="let conta of contas$ | async" [value]="conta.id">
         {{ conta.nome }}
       </mat-option>
     </mat-select>
@@ -20,7 +20,7 @@
     <mat-select id="select-categorias" placeholder="Categoria" [(ngModel)]="lancamento.idCategoria" name="idCategoria"
       required>
       <mat-option [value]="undefined">Selecione</mat-option>
-      <mat-option *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
+      <mat-option class="option-categoria" *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
         {{ categoria.nome }}
       </mat-option>
     </mat-select>
